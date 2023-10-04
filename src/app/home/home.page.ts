@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/assets/interfaces/user';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,10 @@ export class HomePage {
   public usersOfTheObservable$:Observable<User[]> = this._usersForTheObservable.asObservable();
 
   constructor() {}
+
+  onCardClicked(){
+    
+  }
 
   ngOnInit() {
     this._usersForTheObservable.next([
