@@ -13,6 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-button (click)="goToWelcome()">
+    Welcome
+  </ion-button>
+
   <ion-content>
     <!-- [user] -> user se recibe del código "@Input() user?: User" del componente -> 'user-info.component.ts' -->
     <app-user-info *ngFor="let user of usersOfTheObservable$ | async " [user]="user"></app-user-info>

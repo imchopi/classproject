@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/assets/interfaces/user';
-import { UserInfoComponent } from './user-info/user-info.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,14 @@ export class HomePage {
   private _usersForTheObservable: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([])
   public usersOfTheObservable$:Observable<User[]> = this._usersForTheObservable.asObservable();
 
-  constructor() {}
+  constructor(
+    private _router: Router,
+    ) 
+    {}
+
+  goToWelcome(){
+    this._router.navigate(['./welcome'])
+  }
 
   onCardClicked(){
     
