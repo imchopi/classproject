@@ -1,0 +1,19 @@
+<ion-card>
+  <ion-card-header>
+    <ion-avatar>
+      <img alt="Avatar image" src="https://ionicframework.com/docs/img/demos/avatar.svg">
+    </ion-avatar>
+    <ion-card-title>
+      {{user?.name}} {{user?.surname}}
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-card-title>Name</ion-card-title>
+    <ion-card-content>{{ user?.name }}</ion-card-content>
+    <ion-card-title>Surname</ion-card-title>
+    <ion-card-content>{{ user?.surname }}</ion-card-content>
+    <ion-card-title>Age</ion-card-title>
+    <ion-card-content>{{ user?.age }}</ion-card-content>
+  </ion-card-content>
+</ion-card>
