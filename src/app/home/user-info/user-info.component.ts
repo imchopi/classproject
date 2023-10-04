@@ -13,7 +13,7 @@ export class UserInfoComponent implements OnInit {
   private _surname: string = '';
   private _age: number = 0;
 
-  @Output() collectedClick:EventEmitter<void> = new EventEmitter<void>;
+  @Output() onCardClicked:EventEmitter<void> = new EventEmitter<void>;
 
   constructor() {}
 
@@ -33,7 +33,7 @@ export class UserInfoComponent implements OnInit {
   get age(): number {return this._age}
 
   onCardClick(){
-    this.collectedClick.emit;
+    this.onCardClicked.emit();
   }
 
   ngOnInit(): void {
