@@ -1,0 +1,18 @@
+// Tags
+ion-card {
+    width: 350px;
+}
+
+ion-card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+// Class
+.title {
+    font-size: 1.8rem;
+    color: rgb(86, 23, 212);
+    font-weight: bold;
+}
