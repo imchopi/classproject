@@ -27,7 +27,7 @@ export class HomePage {
   }
 
   ngOnInit() {
-    this._usersForTheObservable.next([
+    this. _usersForTheObservable.next([
       {name: 'Adrián', surname: 'Perogil', age: 26},
       {name: 'Daniel', surname: 'Ávila', age: 19},
       {name: 'Juanjo', surname: 'Atienza', age: 26},
