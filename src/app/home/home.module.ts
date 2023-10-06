@@ -7,7 +7,6 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { HomePageRoutingModule } from './home-routing.module';
 import { FirstLetterPipe } from '../first-letter.pipe';
 
-
 @NgModule({
   imports: [
     CommonModule,

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { User } from '../../../assets/interfaces/user';
+import { User } from '../interfaces/user';
+import { UserInfoFavClicked } from 'src/app/user-info-fav-clicked';
 
 @Component({
   selector: 'app-user-info',
@@ -7,16 +8,27 @@ import { User } from '../../../assets/interfaces/user';
   styleUrls: ['./user-info.component.scss'],
 })
 export class UserInfoComponent implements OnInit {
+  private _id: number = 0;
   private _name: string = '';
   private _surname: string = '';
   private _age: number = 0;
+  private _fav: boolean = false;
 
   @Output() onCardClicked: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onFavClicked: EventEmitter<UserInfoFavClicked> = new EventEmitter<UserInfoFavClicked>();
 
   constructor() {}
 
   @Input()
   user?: User;
+
+  @Input()
+  set id(new_id: number) {
+    this._id = new_id;
+  }
+  get id(): number {
+    return this._id;
+  }
 
   @Input()
   set name(new_name: string) {
@@ -42,8 +54,23 @@ export class UserInfoComponent implements OnInit {
     return this._age;
   }
 
+  @Input()
+  set fav(new_fav: boolean) {
+    this._fav = new_fav;
+  }
+  get fav(): boolean {
+    return this._fav;
+  }
+
   onCardClick() {
     this.onCardClicked.emit();
+  }
+
+  onFavClick(event: any) {
+    this.onFavClicked.emit({
+      fav:!(this.user?.fav??false)
+    })
+    event.stopPropagation();
   }
 
   ngOnInit(): void {}
