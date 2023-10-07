@@ -10,6 +10,9 @@
       <ion-icon *ngIf="user?.fav" slot="icon-only" color="danger" name="heart" aria-hidden="true"></ion-icon>
       <ion-icon *ngIf="!user?.fav" slot="icon-only" color="medium" name="heart-outline" aria-hidden="true"></ion-icon>
     </ion-button>  
+    <ion-button class="close-button" fill="clear" aria-label="Delete" (click)="onDeleteClick($event)">
+      <ion-icon slot="icon-only"  color="primary" name="trash" aria-hidden="true"></ion-icon>
+    </ion-button>
   </ion-card-header>
 
   <ion-card-content>

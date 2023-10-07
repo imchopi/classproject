@@ -17,6 +17,8 @@ export class UserInfoComponent implements OnInit {
   @Output() onCardClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() onFavClicked: EventEmitter<UserInfoFavClicked> =
     new EventEmitter<UserInfoFavClicked>();
+  @Output() onDeleteClicked:EventEmitter<void> = new EventEmitter<void>();
+
 
   constructor() {}
 
@@ -71,6 +73,11 @@ export class UserInfoComponent implements OnInit {
     this.onFavClicked.emit({
       fav: !(this.user?.fav ?? false),
     });
+    event.stopPropagation();
+  }
+
+  onDeleteClick(event:any){
+    this.onDeleteClicked.emit();
     event.stopPropagation();
   }
 

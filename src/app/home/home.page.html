@@ -18,7 +18,9 @@
     <app-user-info 
       *ngFor="let user of (users.usersOfTheObservable$ | async) | favs:(favs.favs$ | async)" 
       [user]="user" 
+      (onCardClicked)="onCardClicked()" 
       (onFavClicked)="onFavClicked(user, $event)"
+      (onDeleteClicked)="onDeleteClicked(user)"
     >
   </app-user-info>
   </div>
