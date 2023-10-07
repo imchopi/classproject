@@ -5,20 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { HomePageRoutingModule } from './home-routing.module';
-import { FirstLetterPipe } from '../first-letter.pipe';
+import { FirstLetterPipe } from '../pipes/first-letter.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomePageRoutingModule
-
-  ],
-  declarations: [
-    HomePage, 
-    UserInfoComponent,
-    FirstLetterPipe,
-  ]
+  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
+  declarations: [HomePage, UserInfoComponent, FirstLetterPipe],
 })
 export class HomePageModule {}

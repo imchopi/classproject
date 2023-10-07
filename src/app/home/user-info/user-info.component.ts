@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../interfaces/user';
-import { UserInfoFavClicked } from 'src/app/user-info-fav-clicked';
+import { UserInfoFavClicked } from 'src/app/home/interfaces/user-info-fav-clicked';
 
 @Component({
   selector: 'app-user-info',
@@ -15,7 +15,8 @@ export class UserInfoComponent implements OnInit {
   private _fav: boolean = false;
 
   @Output() onCardClicked: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onFavClicked: EventEmitter<UserInfoFavClicked> = new EventEmitter<UserInfoFavClicked>();
+  @Output() onFavClicked: EventEmitter<UserInfoFavClicked> =
+    new EventEmitter<UserInfoFavClicked>();
 
   constructor() {}
 
@@ -68,8 +69,8 @@ export class UserInfoComponent implements OnInit {
 
   onFavClick(event: any) {
     this.onFavClicked.emit({
-      fav:!(this.user?.fav??false)
-    })
+      fav: !(this.user?.fav ?? false),
+    });
     event.stopPropagation();
   }
 
