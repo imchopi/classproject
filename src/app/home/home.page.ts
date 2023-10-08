@@ -33,7 +33,7 @@ export class HomePage {
     });
   }
 
-  onFavClicked(user: User, event: UserInfoFavClicked) {
+  onFavClicked(user: User, event: UserInfoFavClicked): void {
     /*const users = [...this._usersForTheObservable.value];
     var index = users.findIndex(
       (_usersForTheObservable) => _usersForTheObservable.id == user.id
@@ -62,7 +62,7 @@ export class HomePage {
     });
   }
 
-  public onDeleteClicked(user:User){
+  public onDeleteClicked(user:User): void{
     var _user:User = {...user};
 
     this.users.deleteUser(_user).subscribe(

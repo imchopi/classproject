@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { User } from '../interfaces/user';
+import { User } from '../../interfaces/user';
 import { UserInfoFavClicked } from 'src/app/home/interfaces/user-info-fav-clicked';
 
 @Component({
@@ -17,8 +17,7 @@ export class UserInfoComponent implements OnInit {
   @Output() onCardClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() onFavClicked: EventEmitter<UserInfoFavClicked> =
     new EventEmitter<UserInfoFavClicked>();
-  @Output() onDeleteClicked:EventEmitter<void> = new EventEmitter<void>();
-
+  @Output() onDeleteClicked: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {}
 
@@ -76,7 +75,7 @@ export class UserInfoComponent implements OnInit {
     event.stopPropagation();
   }
 
-  onDeleteClick(event:any){
+  onDeleteClick(event: any) {
     this.onDeleteClicked.emit();
     event.stopPropagation();
   }
