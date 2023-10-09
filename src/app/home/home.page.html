@@ -13,15 +13,23 @@
     </ion-toolbar>
   </ion-header>
   <ion-button (click)="goToWelcome()"> Welcome </ion-button>
-  <!-- [user] -> user se recibe del código "@Input() user?: User" del componente -> 'user-info.component.ts' -->
   <div class="cards">
     <app-user-info 
+      appHighlight
       *ngFor="let user of (users.usersOfTheObservable$ | async) | favs:(favs.favs$ | async)" 
       [user]="user" 
       (onCardClicked)="onCardClicked()" 
       (onFavClicked)="onFavClicked(user, $event)"
       (onDeleteClicked)="onDeleteClicked(user)"
     >
-  </app-user-info>
+    </app-user-info>
+  </div>
+  <div>
+    <app-fav-info
+      *ngFor = "let favourite of (favs.favs$ | async)"
+      [id]="favourite?.userId"
+      (deletedFav)="deleteFav(favourite)"
+    >
+    </app-fav-info>
   </div>
 </ion-content>

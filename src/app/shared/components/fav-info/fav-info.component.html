@@ -1,0 +1,13 @@
+<ion-card>
+  <ion-card-header>
+    <ion-avatar class="avatar">
+      <img alt="Avatar image" src="https://ionicframework.com/docs/img/demos/avatar.svg">
+    </ion-avatar>
+    <ion-card-title class="title">
+      {{name}}
+    </ion-card-title>
+    <ion-button class="fav-button" fill="clear" aria-label="Favorite" (click)="deleteFav($event)">
+      <ion-icon slot="icon-only" color="danger" name="close" aria-hidden="true"></ion-icon>
+    </ion-button>  
+  </ion-card-header>
+</ion-card>

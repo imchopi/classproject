@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../home/interfaces/user';
+import { User } from '../../shared/components/user-info/user';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export class UserNotFoundException extends Error {
   // . declare any additional properties or methods .
 }
-
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,7 @@ export class UserService {
   constructor() {}
 
   getAll(): Observable<User[]> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       setTimeout(() => {
         var users: User[] = [
           { id: 1, name: 'Adrián', surname: 'Perogil', age: 26, fav: true },
@@ -35,65 +34,61 @@ export class UserService {
       }, 1000);
     });
   }
-  
-  public getUser(id:number):Observable<User>{
-    return new Observable(observer=>{
+
+  public getUser(id: number): Observable<User> {
+    return new Observable((observer) => {
       setTimeout(() => {
-        var user = this._usersForTheObservable.value.find(user=>user.id==id);
-        if(user)
-          observer.next(user);
-        else 
-          observer.error(new UserNotFoundException());
+        var user = this._usersForTheObservable.value.find(
+          (user) => user.id == id
+        );
+        if (user) observer.next(user);
+        else observer.error(new UserNotFoundException());
         observer.complete();
       }, 1000);
-      
-    })
-    
+    });
   }
 
-  public updateUser(user:User):Observable<User>{
-    return new Observable(observer=>{
+  public updateUser(user: User): Observable<User> {
+    return new Observable((observer) => {
       setTimeout(() => {
         var _usersForTheObservable = [...this._usersForTheObservable.value];
-        var index = _usersForTheObservable.findIndex(u=>u.id==user.id);
-        if(index<0)
-          observer.error(new UserNotFoundException());
-        else{
-          _usersForTheObservable[index]=user;
+        var index = _usersForTheObservable.findIndex((u) => u.id == user.id);
+        if (index < 0) observer.error(new UserNotFoundException());
+        else {
+          _usersForTheObservable[index] = user;
           observer.next(user);
           this._usersForTheObservable.next(_usersForTheObservable);
         }
         observer.complete();
       }, 500);
-      
     });
-    
   }
 
-  public deleteUser(user:User):Observable<User>{
-    return new Observable(observer=>{
+  public deleteUser(user: User): Observable<User> {
+    return new Observable((observer) => {
       setTimeout(() => {
         var _usersForTheObservable = [...this._usersForTheObservable.value];
-        var index = _usersForTheObservable.findIndex(u=>u.id==user.id);
-        if(index<0)
-          observer.error(new UserNotFoundException());
-        else{
-          _usersForTheObservable = [..._usersForTheObservable.slice(0,index),..._usersForTheObservable.slice(index+1)];
+        var index = _usersForTheObservable.findIndex((u) => u.id == user.id);
+        if (index < 0) observer.error(new UserNotFoundException());
+        else {
+          _usersForTheObservable = [
+            ..._usersForTheObservable.slice(0, index),
+            ..._usersForTheObservable.slice(index + 1),
+          ];
           this._usersForTheObservable.next(_usersForTheObservable);
           observer.next(user);
         }
         observer.complete();
       }, 500);
-      
     });
   }
 
-  public deleteAll():Observable<void>{
-    return new Observable(observer=>{
+  public deleteAll(): Observable<void> {
+    return new Observable((observer) => {
       setTimeout(() => {
         this._usersForTheObservable.next([]);
         observer.next();
-        observer.complete();  
+        observer.complete();
       }, 1000);
     });
   }
