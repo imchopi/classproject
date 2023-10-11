@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../shared/components/user-info/user';
+import { User } from '../../../shared/interfaces/user';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export class UserNotFoundException extends Error {

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { User } from 'src/app/shared/components/user-info/user';
+import { User } from 'src/app/shared/interfaces/user';
 import { Router } from '@angular/router';
-import { UserInfoFavClicked } from '../shared/components/user-info/user-info-fav-clicked';
-import { ToastController, ToastOptions } from '@ionic/angular';
-import { UserService } from '../services/userService/user.service';
-import { FavouriteService } from '../services/favouriteService/favourite.service';
+import { UserInfoFavClicked } from '../../shared/interfaces/user-info-fav-clicked';
+import { ModalController, ToastController, ToastOptions } from '@ionic/angular';
+import { UserService } from '../../core/services/userService/user.service';
+import { FavouriteService } from '../../core/services/favouriteService/favourite.service';
 import { zip } from 'rxjs';
-import { Fav } from '../shared/components/fav-info/fav';
+import { Fav } from '../../shared/interfaces/fav';
+import { UserFormComponent } from 'src/app/shared/components/userform/userform.component';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomePage {
     private _toast: ToastController,
     public users: UserService,
     public favs: FavouriteService,
+    public modal: ModalController
   ) {}
 
   goToWelcome() {
@@ -86,8 +88,8 @@ export class HomePage {
   }
 
   public deleteFav(fav: Fav): void {
-    var fav: Fav = {...fav}
-    this.favs.deleteFav(fav.userId).subscribe()
+    var fav: Fav = { ...fav };
+    this.favs.deleteFav(fav.userId).subscribe();
   }
 
   public async onCardClicked() {
@@ -102,6 +104,38 @@ export class HomePage {
     toast.present();
   }
 
+  /*async presentForm(onDismiss: (result: any) => void) {
+    const modal = await this.modal.create({
+      component: UserFormComponent,
+      cssClass: 'modal-full-right-side',
+    });
+    modal.present();
+    modal.onDidDismiss().then((result) => {
+      if (result && result.data) {
+        onDismiss(result.data);
+      }
+    });
+  }*/
 
+  presentForm(onDismiss: (result: any) => void) {
+    this.modal.create({
+      component: UserFormComponent,
+      cssClass: 'modal-full-right-side',
+    }).then((modal)=> {
+      modal.present();
+      modal.onDidDismiss().then((result) => {
+        if (result && result.data) {
+          onDismiss(result.data);
+        }
+    });
+  })
+  }
 
+  onNewUser() {
+    var onDismiss = (data: any)=>{
+      console.log(data);
+      
+    }
+    this.presentForm(onDismiss)
+  }
 }

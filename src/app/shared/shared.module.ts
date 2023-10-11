@@ -6,20 +6,28 @@ import { FirstLetterPipe } from './pipes/firstLetter/first-letter.pipe';
 import { FavInfoComponent } from './components/fav-info/fav-info.component';
 import { FavsPipe } from './pipes/favs/favs.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { UserFormComponent } from './components/userform/userform.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
+    HighlightDirective,
+    FavsPipe,
     UserInfoComponent,
-    FirstLetterPipe,
+    UserFormComponent,
     FavInfoComponent,
+    FirstLetterPipe,
+    
   ],
-  imports: [
-    CommonModule,
-    IonicModule
-  ],
+  imports: [CommonModule, IonicModule, FormsModule],
   exports: [
     UserInfoComponent,
     FavInfoComponent,
-  ]
+    IonicModule,
+    FormsModule,
+    HighlightDirective,
+    FavsPipe,
+    UserFormComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
